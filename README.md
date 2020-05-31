@@ -15,26 +15,8 @@ The following needs to be already setup before proceeding with this setup:
 ### Step - 1: In the `configuration.yaml`, please add the following: (*Please add Asr and Isha accordingly*)
 
 ```
-### Input slider to control gateway volume ###
+### Input slider to control speaker volume ###
 input_number:
-  gateway_volume:
-    name: Volume
-    initial: 10
-    min: 0
-    max: 100
-    step: 1
-    icon: mdi:volume-high
-
-### Input slider to control loop delay ###
-  loop_delay:
-    name: "Loop Delay"
-    initial: 1
-    min: 0
-    max: 15
-    step: 1
-    icon: mdi:loop
-
-
   azan_volume_maghrib:
     name: "Azan Volume Maghrib"
     initial: 0.8
