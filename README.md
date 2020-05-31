@@ -210,14 +210,6 @@ The Automation accomplishes the following:
     - service: media_player.turn_off
       data:
         entity_id: media_player.mibox3
-    - service: notify.alexa_media
-      data:
-        target:
-          - media_player.home
-        data:
-          type: announce
-        message: "Prayer Time..."
-
 
 - alias: Play Zuhr Azan
   trigger:
