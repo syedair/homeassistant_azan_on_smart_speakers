@@ -12,7 +12,7 @@ The following needs to be already setup before proceeding with this setup:
 
 ## Steps
 
-### Step - 1: In the `configuration.yaml`, please add the following: (*Please add Asr and Isha accordingly, accordingly*)
+### Step - 1: In the `configuration.yaml`, please add the following: (*Please add Asr and Isha accordingly*)
 
 ```
 ### Input slider to control gateway volume ###
@@ -70,7 +70,7 @@ sensor: !include sensors.yaml
 input_select: !include input_select.yaml
 ```
 
-### Step-2: `sensors.yaml`
+### Step-2: Create `sensors.yaml` and add the following to it.
 
 I am using `api.aladhan.com` to get the updated timings (updated every `3000 seconds` - This can be increased to 24hours as the times won't change frequently). 
 
@@ -119,7 +119,7 @@ https://aladhan.com/prayer-times-api#GetTimings
       value_template: '{{ states.sensor.prayer_times.attributes["data"]["timings"]["Midnight"] }}'
 ```
 
-### Step-3: `input_select.yaml`
+### Step-3: Create `input_select.yaml` and add the following yaml to it. (*Please add Asr and Isha accordingly to it*)
 
 These inputs will be available to use in your UI. 
 
@@ -172,7 +172,7 @@ Note:
 
 The Automation accomplishes the following:
 1. Set the Volume of the Smart Speaker, based on the slider value
-2. Play Azan
+2. Play Azan (The Azan is also selected based on the Input Select
 3. Shut-down TV or any media (You can remove that part if not needed)
 4. The Automation runs every 30 second, so there might be a max delay of 30 seconds when it's time for prayers.
 
