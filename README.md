@@ -72,6 +72,17 @@ input_select: !include input_select.yaml
 
 ### Step-2: `sensors.yaml`
 
+I am using `api.aladhan.com` to get the updated timings (updated every `3000 seconds` - This can be increased to 24hours as the times won't change frequently). 
+
+Note a few things:
+
+1. Change the `method` accoding to your school of fiqh. I have set it to `0 - Shia Ithna-Ansari`
+2. Change the `logitute` and `latitude` based on your location
+3. Change the `midnightMode` accordingy. I have set it to `1 for Jafari (Mid Sunset to Fajr)`
+
+For complete API documentation, please refer here:
+https://aladhan.com/prayer-times-api#GetTimings
+
 ```
 - platform: rest
   name: Prayer Times
@@ -108,7 +119,23 @@ input_select: !include input_select.yaml
       value_template: '{{ states.sensor.prayer_times.attributes["data"]["timings"]["Midnight"] }}'
 ```
 
-### Step-2: `input_select.yaml`
+### Step-3: `input_select.yaml`
+
+These inputs will be available to use in your UI. 
+
+Note:
+1. place the Azan MP3 file under `www/azan1.mp3
+2. If you would like to have multiple options, to select which Azan to be played at what time, you and add. I have added three azans as follows:
+ - `www/azan1.mp3`
+ - `www.azan2.mp3`
+ - `www.azan3.mp3`
+ 
+3. Make sure the options value below has this convention:
+```
+"<exact_azan_file_name> - <custom title>"
+e.g.
+"azan1.mp3 - Abathar"
+```
 
 ```
 azan_select_fajr:
@@ -137,7 +164,7 @@ azan_select_maghrib:
 
 ```
 
-### Step-3: In the `automations.yaml` add the following: (*Please add Asr and Isha accordingly, accordingly*)
+### Step-4: In the `automations.yaml` add the following: (*Please add Asr and Isha accordingly, accordingly*)
 
 Note: 
 - Replace the IP address 192.168.2.30 with your RPI IP address where Home Assistant is running
@@ -147,6 +174,7 @@ The Automation accomplishes the following:
 1. Set the Volume of the Smart Speaker, based on the slider value
 2. Play Azan
 3. Shut-down TV or any media (You can remove that part if not needed)
+4. The Automation runs every 30 second, so there might be a max delay of 30 seconds when it's time for prayers.
 
 ```
 - alias: Play Fajr Azan
